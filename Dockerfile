@@ -1,11 +1,11 @@
-FROM alpine:latest
+FROM debian:latest
 
-ENV BUILD_PACKAGES="build-base openssl" \
-    PACKAGES="tor sudo bash git haproxy privoxy npm procps"
+ENV BUILD_PACKAGES="build-essential openssl" \
+    PACKAGES="unzip wget tor sudo bash git haproxy privoxy npm procps netcat"
 
 # install requirements
 RUN \
-  apk update && apk add --no-cache $BUILD_PACKAGES $PACKAGES && \
+  apt update && apt install -y $BUILD_PACKAGES $PACKAGES && \
   npm install -g http-proxy-to-socks
 
 # install polipo
@@ -21,8 +21,8 @@ RUN \
 
 # clean build packages
 RUN \
-  apk del $BUILD_PACKAGES
-
+  apt remove -y $BUILD_PACKAGES
+RUN apt autoremove -y
 # install multitor
 RUN	git clone https://github.com/trimstray/multitor && \
 	cd multitor && \
