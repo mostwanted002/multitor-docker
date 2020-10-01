@@ -1,5 +1,8 @@
 FROM debian:latest
 
+# DEBIAN_FRONTEND=noninteractive smoothlines the apt install process by supressing in required user intraction.
+ENV DEBIAN_FRONTEND=noninteractive
+
 ENV BUILD_PACKAGES="build-essential openssl" \
     PACKAGES="unzip wget tor sudo bash git haproxy privoxy npm procps netcat"
 
