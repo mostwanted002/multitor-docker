@@ -17,7 +17,7 @@ RUN \
 	unzip polipo.zip && \
   cd polipo-master && \
   make && \
-  install polipo /usr/local/bin/ && \
+  mv polipo /usr/local/bin/ && \
   cd .. && \
   rm -rf polipo.zip polipo-master && \
   mkdir -p /usr/share/polipo/www /var/cache/polipo 
